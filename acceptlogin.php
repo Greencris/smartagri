@@ -1,23 +1,15 @@
 <?php
     session_start();
 
-    //khai báo biến host
-    $hostName = 'localhost';
-    // khai báo biến username
-    $userName = 'root';
-    //khai báo biến password
-    $passWord = '';
-    // khai báo biến databaseName
-    $databaseName = 'automation';
-    // khởi tạo kết nối
-    $connect = mysqli_connect($hostName, $userName, $passWord, $databaseName);
-    //Kiểm tra kết nối
-    if (!$connect) {
-        exit('Kết nối không thành công!');
-    }
+
     // thành công
     echo 'Kết nối thành công!';
 	if (isset($_POST["submit"])) {
+
+        $myfile = fopen("login.txt", "r") or die("Unable to open file!");
+        $control = fread($myfile,filesize("data.txt"));
+        fclose($myfile);
+  
 		// lấy thông tin người dùng
 		$username = $_POST["username"];
 		$password = $_POST["password"];
